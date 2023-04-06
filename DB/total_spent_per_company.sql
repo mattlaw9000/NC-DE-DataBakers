@@ -1,0 +1,12 @@
+SELECT
+DISTINCT project_team_2.dim_counterparty.counterparty_legal_name as company_name,
+project_team_2.dim_counterparty.counterparty_legal_country as country,
+project_team_2.dim_currency.currency_name as currency,
+unit_price * units_sold AS total_Profit
+from project_team_2.fact_sales_order
+JOIN project_team_2.dim_currency
+ON project_team_2.dim_currency.currency_id = project_team_2.fact_sales_order.currency_id
+JOIN project_team_2.dim_counterparty
+ON project_team_2.fact_sales_order.counterparty_id = project_team_2.dim_counterparty.counterparty_id
+ORDER BY total_profit DESC
+LIMIT 10

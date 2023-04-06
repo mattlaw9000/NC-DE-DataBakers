@@ -1,0 +1,6 @@
+SELECT project_team_2.dim_location.country as countries,
+sum(project_team_2.fact_sales_order.units_sold)
+from project_team_2.fact_sales_order
+JOIN project_team_2.dim_location
+On project_team_2.dim_location.location_id = project_team_2.fact_sales_order.agreed_delivery_location_id
+group by project_team_2.dim_location.country
